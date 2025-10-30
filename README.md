@@ -19,10 +19,10 @@
 
 ```mermaid
 flowchart LR
-  U[User Browser] -- HTTPS --> CR[Cloud Run<br/>Spring Boot App]
-  CR -- Outbound (egress) --> VC[Serverless VPC Access<br/>Connector]
-  VC --> NAT[Cloud NAT<br/>Static IP (e.g., 35.221.115.157)]
-  NAT --> DB[MySQL/MariaDB on GCE VM<br/>tcp/3306]
+  U[User Browser] -->|HTTPS| CR[Cloud Run\nSpring Boot App]
+  CR -->|Outbound (egress)| VC[Serverless VPC Access\nConnector]
+  VC --> NAT[Cloud NAT\nStatic IP 35.221.115.157]
+  NAT --> DB[MySQL/MariaDB on GCE VM\nTCP 3306]
 ```
 
 - **Frontend**: Thymeleaf templates (SSR), HTML/CSS/JS  
