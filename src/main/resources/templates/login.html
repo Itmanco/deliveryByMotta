@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/common.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="header" th:insert="~{header}"></div>
+	<div class="container">
+		<form th:action="@{/login}" method="post" th:object="${loginInput}">
+			<h2>★★★　ログイン　★★★</h2>
+ 			<div class="comments">
+				<div th:text="${message}"></div>
+				<div th:if="${#fields.hasErrors('login_id')}" th:errors="*{login_id}" class="errors"></div>
+ 				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errors"></div>
+			 </div>
+ 			
+ 			<div class="form-group">
+		        <span id="caption" th:text="${'Login_id:'}"></span>
+		        <input type="text" value="" th:field="*{login_id}" th:errorclass="err-field" size="8">
+	    	</div>
+	    	<div class="form-group">
+		        <span id="password" th:text="${'Password:'}"></span>
+		        <input type="text" value="" th:field="*{password}" th:errorclass="err-field" size="8">
+	    	</div>
+
+			
+			<div class="actions">
+		        <button type="submit">ログイン</button>
+		    </div>
+		    <div class="footer-link">
+		    	<a th:href="@{/forget}">パスワードを忘れた場合</a>
+			</div>	
+		</form>
+	</div>
+	<footer id="page-footer" th:replace="~{footer}"></footer>
+</body>
+</html>

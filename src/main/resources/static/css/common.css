@@ -1,0 +1,696 @@
+@charset "UTF-8";
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+	min-width: 1100px; 
+	display: flex;
+    flex-direction: column;
+    padding-bottom: 40px; 
+    padding-top: 70px; 
+    margin: 0 auto;    
+    font-family: "Helvetica Neue",Optima, serif;
+}
+.container{
+	width: 750px; 
+    padding: 14px;
+    background-color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-form{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-form form {
+    width: 450px; 
+}
+
+.container form h2 {
+    text-align: center;
+}
+
+.form-group,
+.form-actions {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2px;
+    border: 1px solid #96031a;
+    box-sizing: border-box;
+}
+.form-group span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 170px;
+    padding: 2px;
+    box-sizing: border-box;
+    background-color: #d80032; 
+    color: #fff;
+    font-weight: 700;
+}
+
+.form-group span.display-field {
+    color: #333;
+    background-color: transparent; 
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    text-align: left; 
+    flex-grow: 1; 
+    padding: 0px 0px 0px 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background:#d80032;
+  color:#ECFFF3;
+}
+
+td {
+  background:#f8f0de;
+}
+
+.form-group input:not([type="radio"]),
+.form-group textarea,
+.form-group select,
+.display-value {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+}
+
+input {
+    border: 1px solid #000;
+    padding: 5px;
+    width: 100%;
+}
+
+button {
+    border: 1px solid  #96031a;
+    padding: 3px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    max-width: 200px;
+    box-sizing: border-box;
+}
+
+button:hover {
+	color: #fff;
+    font-weight: 700;
+    background-color: #d80032;
+    border: 2px solid rgb(123, 123, 123); 
+}
+
+.actions {
+	padding-top: 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    
+}
+
+.footer-link {
+    text-align: center;
+    margin-top: 15px; 
+}
+
+.footer {
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    width: 100%;
+    height: 40px; 
+    z-index: 1000; 
+    text-align: center;
+    line-height: 30px; 
+	flex-shrink: 0;
+	font-size: .8em;
+}
+.main-header {
+	min-width: 940px; 
+	position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #d80032; 
+    color: #fff;
+    padding: 7px 20px;
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: space-between; 
+    height: 70px;
+    flex-shrink: 0;
+}
+
+
+.logo-area {
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.5em;
+    margin-right: 30px;
+}
+
+.logo-area h1 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.2em; 
+}
+
+.logo-icon {
+    width: 45px; 
+    height: 60px;
+    margin-right: 8px;
+    background-color: transparent; 
+}
+
+/* 3. Main Navigation Links (Center) */
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    gap: 8px; 
+}
+
+.btn-link {
+    display: block; 
+    text-decoration: none;
+    color: white;
+    padding: 1px 20px;
+    border: 1.5px solid rgb(255, 255, 255); 
+    border-radius: 3px;
+    background-color: rgb(230, 0, 52); 
+    transition: background-color 0.3s;
+}
+
+.btn-link:hover {
+    background-color: rgb(255, 0, 0);
+    border: 2px solid rgb(123, 123, 123); 
+}
+
+/* 4. User/Guest Links (Right) */
+.user-nav {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    margin-left: 20px;
+    flex-direction: column; 
+    align-items: flex-start; 
+    font-weight: bold;
+}
+
+.guest-text {
+    font-size: 0.9em;
+    margin-right: 15px;
+}
+
+.user-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.user-nav a {
+    color: #640d14;
+    text-decoration: none;
+    font-size: 1em;
+    border-bottom: 1px solid; 
+}
+
+.user-nav a:hover {
+	color: #faf0ca;
+}
+
+
+/* --- Main Content Area Layout --- */
+#contents_main {
+	width: 1100px;
+    box-sizing: border-box; 
+    height: calc(100vh - 70px - 60px); 
+    padding: 20px; 
+    margin: 0 auto; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    overflow-y: auto;
+}
+
+/* --- Left and Right Sidebars --- */
+.side-area {
+    flex: 0 0 250px;
+    padding: 10px;
+    height: 100%; 
+    overflow-y: auto; 
+}
+
+/* --- Center Image Area --- */
+.main-pizza-image {
+    flex-grow: 1; 
+    text-align: center;
+    padding: 10px;
+    max-width: 700px;
+    height: 100%; 
+    overflow-y: auto; 
+}
+
+#main-feature-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Styling for Headers and Items --- */
+.side-area h2 {
+    color: #900;
+    font-size: 1em;
+    border-bottom: 2px solid #900;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.recommend-item {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.recommend-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.right-info {
+    font-size: 0.9em;
+}
+
+.news-item {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.comments {
+    text-align: center;
+    color: rgb(255, 0, 0);
+    font-size: 14pt;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.shop-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 1000px; 
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.shop-map-area {
+    flex: 0 0 400px;
+    min-width: 400px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.shop-map-area h3 {
+    margin: 0;
+    text-align: center; 
+}
+
+.shop-table-area {
+    flex-grow: 1; 
+    min-width: 500px; 
+}
+
+#map-status {
+    white-space: pre-wrap;
+    font-size: 9pt;
+}
+
+.shop-table-area table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.shop-table-area table tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* =======================================================
+   RESPONSIVE LAYOUT: Hide Columns on Small Screens
+   ======================================================= */
+
+@media (max-width: 950px) {
+    
+    .hide-on-small {
+        display: none !important; 
+    }
+    
+    .form-group span {
+        width: 150px;
+    }
+    
+    .shop-content-wrapper {
+        width: 900px;
+    }
+
+    .shop-table-area {
+        min-width: 450px;
+        flex: 1;
+    }
+
+    th, td {
+        padding: 6px;
+        font-size: 13px;
+    }
+}
+
+/* --- MENU PAGE SPECIFIC STYLES --- */
+
+/* 1. Menu Display Area (Right side of the page) */
+.menu-display-area {
+    flex-grow: 1;
+    padding: 10px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-area h2 {
+    font-size: 1.2em;
+    color: #d80032;
+    border-bottom: 2px solid #d80032;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+.side-area select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+
+/* 2. Menu List Container (Grid Layout) */
+.menu-list {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    min-height: 0; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
+    gap: 10px; 
+    margin-top: 10px;
+    align-content: start;
+}
+
+/* 3. Menu Item Card Styles */
+.menu-item-card {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    height: 200px;
+    width: 100%;
+}
+
+/* Item Details (Text) */
+.item-details {
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-details h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.item-details .price {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #96031a;
+    margin: 5px 0 10px 0;
+}
+
+.item-details .description {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Item Image (Right side of the card) */
+.item-image {
+    flex-shrink: 0;
+    width: 150px; 
+    height: 100%;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-button {
+    align-self: flex-start;
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #d80032; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.order-button:hover {
+    background-color: #96031a;
+}
+
+/* --- MODAL STYLES (Quantity Selector) --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000; /* Must be higher than the fixed header/footer */
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.modal-content h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #d80032;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.quantity-control {
+    margin: 20px 0;
+}
+
+#modal-quantity-select {
+    padding: 10px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+    text-align: center;
+}
+
+.modal-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.cancel-button:hover {
+    background-color: #ddd;
+    color: #333;
+    border: 1px solid #aaa;
+}
+
+.modal-actions .order-button {
+    background-color: #d80032;
+    color: white;
+    border: none;
+}
+
+/* =======================================================
+   15. PAGE: ORDER (CART) - NEW STYLES
+   ======================================================= */
+
+.container-order{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-order h2{
+	text-align: center;
+}
+.cart-table {
+    width: 700px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.cart-table th, 
+.cart-table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.cart-table th {
+    background: #d80032;
+    color: #ECFFF3;
+}
+
+.cart-table td {
+    background: #f8f0de;
+}
+
+.cart-table td:nth-child(3),
+.cart-table td:nth-child(5) {
+    text-align: right;
+}
+
+.cart-summary {
+    width: 700px;
+    margin-top: 25px;
+    padding: 15px;
+    border: 2px solid #eee;
+    background-color: #f9f9f9;
+}
+
+.cart-summary h3 {
+    text-align: right;
+    margin: 0;
+    color: #333;
+}
+
+.cart-total-price {
+    color: #d9534f;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+/* --- New Cart Button Styles --- */
+
+.cart-update-btn {
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+.cart-update-btn:hover {
+    background-color: #0056b3;
+}
+
+.cart-remove-btn {
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+.cart-remove-btn:hover {
+    background-color: #c82333;
+}
+
+.cart-checkout-btn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+.cart-checkout-btn:hover {
+    background-color: #218838;
+}

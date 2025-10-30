@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ご注文内容確認</title>
+<link th:href="@{/css/common.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="header" th:insert="~{header}"></div>
+<div class="container-order">
+
+	<h2>★★★　ご注文内容確認　★★★</h2>
+	
+	<div class="comments" th:if="${orderMessage}">
+		<p th:text="${orderMessage}" style="color: green;"></p>
+	</div>
+	
+	<table class="cart-table" th:if="${shoppingCart != null AND !#lists.isEmpty(shoppingCart.items)}">
+	    <thead>
+	      <tr>
+	        <th>商品ID</th>
+	        <th>商品名</th>
+	        <th>価格 (税抜)</th>
+	        <th>数量</th>
+	        <th>小計</th>
+	        <th>操作</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	<tr th:each="item : ${shoppingCart.items}" th:object="${item}">
+	    		<td th:text="*{item_id}"></td>
+				<td th:text="*{item_name}"></td>
+				
+				<td th:text="${'¥' + #numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}"></td>
+				
+				<td>
+				    <form th:action="@{/order/update}" method="post" style="display: inline-block;">
+				        <input type="hidden" name="itemId" th:value="*{item_id}">
+				        <input type="number" name="quantity" th:value="*{quantity}" min="1" max="99" style="width: 40px; padding: 2px;">
+				        <button type="submit" class="cart-update-btn">変更</button>
+				    </form>
+				</td>
+				
+				<td th:text="${'¥' + #numbers.formatDecimal(item.subtotal, 0, 'COMMA', 0, 'POINT')}"></td>
+				
+				<td>
+				    <form th:action="@{/order/remove}" method="post">
+				        <input type="hidden" name="itemId" th:value="*{item_id}">
+				        <button type="submit" class="cart-remove-btn">削除</button>
+				    </form>
+				</td>
+			</tr>
+	    </tbody>    
+	</table>
+	
+	<div th:unless="${shoppingCart == null OR #lists.isEmpty(shoppingCart.items)}" class="cart-summary">
+	    <h3>合計金額: 
+	        <span class="cart-total-price" th:text="${'¥' + #numbers.formatDecimal(shoppingCart.totalPrice, 0, 'COMMA', 0, 'POINT')}">¥9,999</span>
+	    </h3>
+	    
+	    <div class="actions">
+	        <form th:action="@{/checkout}" method="get">
+	            <button type="submit" class="cart-checkout-btn" disabled>レジへ進む</button>
+	        </form>
+	    </div>
+	</div>
+	
+	<div th:if="${shoppingCart == null OR #lists.isEmpty(shoppingCart.items)}" style="margin-top: 30px;">
+	    <p style="font-size: 1.2em; color: #96031a;">カートに商品がありません。<br>注文を作成するには、ログインしてください。</p>
+	    <div class="footer-link" style="margin-top: 20px;">
+	        <a th:href="@{/menu}">メニューに戻る</a>
+	    </div>
+	</div>
+	
+
+</div>
+<footer id="page-footer" th:replace="~{footer}"></footer>
+
+</body>
+</html>

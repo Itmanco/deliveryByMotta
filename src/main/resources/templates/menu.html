@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Menu</title>
+<link th:href="@{/css/common.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="header" th:insert="~{header}"></div>
+	<div class="comments">
+		<div th:text="${message}"></div>
+	</div>
+<div id="contents_main">
+<!-- Left Column: Shop Selector -->
+
+<div class="side-area left-recommendation">
+<h2>店舗選択</h2>
+<!-- Dropdown to select the shop -->
+<form th:action="@{/menu}" method="get" id="shop-select-form">
+    <select name="shopId" onchange="document.getElementById('shop-select-form').submit()">
+        <option th:each="shop : ${shopList}" 
+                th:value="${shop.shop_id}" 
+                th:text="${shop.shop_name}"
+                th:selected="${activeShop != null AND shop.shop_id == activeShop.shop_id}">
+        </option>
+    </select>
+    <h2>メニューの分類</h2>
+    <select name="categoryId" onchange="document.getElementById('shop-select-form').submit()">
+    	<option th:text="ALL" value="ALL" th:selected="${selectedCategoryId == null or selectedCategoryId == 'ALL'}">
+        <option th:each="category : ${categoryItems}" 
+                th:value="${category.category_id}" 
+                th:text="${category.name}"
+                th:selected="${category.category_id} == ${selectedCategoryId}">
+        </option>
+    </select>
+</form>
+
+<!-- Display selected shop information -->
+<div th:if="${activeShop != null}" style="margin-top: 60px;">
+    <h3>選択店舗詳細</h3>
+    <p th:text="${'住所: ' + activeShop.address}"></p>
+    <p th:text="${'電話: ' + @utils.formatJapanesePhone(activeShop.phone)}"></p>
+</div>
+<div th:unless="${activeShop != null}" style="margin-top: 15px;">
+    <p>利用可能な店舗がありません。</p>
+</div>
+
+
+</div>
+
+<!-- Center/Right Column: Display Menu Items -->
+
+<div class="menu-display-area">
+	<h2 th:if="${activeShop != null}" 
+        th:text="${activeShop.shop_name} + ' のメニュー'">
+        [ショップ名] のメニュー
+    </h2>
+    <h2 th:unless="${activeShop != null}" th:text="'メニュー'">
+        メニュー
+    </h2>
+
+<div class="menu-list">
+    <!-- Loop through the menu items fetched for the selected shop -->
+    <div class="menu-item-card" th:each="item : ${menuItems}" th:object="${item}">
+        <div class="item-details">
+            <h3 th:text="*{item_name}">ジャーマンポテトピザ</h3>
+            <p class="price" th:text="${'¥' + #numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}"></p>
+            <p class="description" th:text="*{description}"></p>
+            <button 
+			    th:if="${loginInput?.login_id != null}" 
+			    class="order-button"
+			    th:onclick="openModal('[[*{item_id}]]', '[[*{item_name}]]')">
+			    注文
+			</button>
+        </div>
+        <div class="item-image">
+            <img th:src="@{*{image_url}}" alt="Menu Item Image">
+        </div>
+    </div>
+    
+    <div th:if="${#lists.isEmpty(menuItems)}">
+         <p>この店舗では現在メニューがありません。</p>
+    </div>
+</div>
+
+
+</div>
+
+</div>
+<div id="quantity-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-item-name"></h3>
+        <p>数量を選択してください (1〜10)</p>
+        <form id="modal-order-form" th:action="@{/order/add}" method="post">
+            <input type="hidden" name="itemId" id="modal-item-id">
+            <input type="hidden" name="shopId" th:value="${activeShop?.shop_id}">
+    		<input type="hidden" name="categoryId" th:value="${selectedCategoryId}">
+            
+            <div class="quantity-control">
+                <select name="quantity" id="modal-quantity-select">
+                </select>
+            </div>
+
+            <div class="modal-actions">
+                <button type="submit" class="order-button">カートに追加</button>
+                <button type="button" class="cancel-button" onclick="closeModal()">キャンセル</button>
+            </div>
+        </form>
+    </div>
+</div>
+<footer id="page-footer" th:replace="~{footer}"></footer>
+<script th:src="@{/js/shop_map.js}"></script>
+<script th:inline="javascript">
+    function openModal(itemId, itemName) {
+        document.getElementById('modal-item-id').value = itemId;
+        document.getElementById('modal-item-name').textContent = itemName;
+        
+        const select = document.getElementById('modal-quantity-select');
+        select.innerHTML = '';
+        
+        for (let i = 1; i <= 10; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            if (i === 1) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        }
+
+        document.getElementById('quantity-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('quantity-modal').style.display = 'none';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header class="main-header">
+    <div class="logo-area">
+        <img th:src="@{/images/chef-icon.png}" alt="Chef Icon" class="logo-icon">
+        <h1>Kenピザ＆パスタ</h1>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a th:href="@{/delivery}" class="btn-link">Home</a></li>
+            <li><a th:href="@{/menu}" class="btn-link">Menu</a></li>
+            <li><a th:href="@{/order}" class="btn-link">Order</a></li>
+            <li><a th:href="@{/shop}" class="btn-link">Shops</a></li>
+        </ul>
+    </nav>
+
+    <nav class="user-nav">
+        <span class="guest-text" id="userName" th:text="${loginInput?.name} ?: 'ゲスト様'">
+    	</span>
+        <ul>            
+            <li th:unless="${loginInput?.login_id != null}">
+            	<a th:href="@{/login}">ログイン</a>
+	        </li>
+	        <li th:unless="${loginInput?.login_id != null}">
+	            <a th:href="@{/regist}">新規お客様登録</a>
+	        </li>
+	        
+	        <li th:if="${loginInput?.login_id != null}">
+	            <a th:href="@{/updateCustomer}">お客様データ更新</a>
+	        </li>
+	        <li th:if="${loginInput?.login_id != null}">
+	            <a th:href="@{/logout}">ログアウト</a>
+	        </li>
+        
+        </ul>
+    </nav>
+</header>
+</html>

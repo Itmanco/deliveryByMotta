@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ken Pizza &amp; Pasta</title>
+<link th:href="@{/css/common.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="header" th:insert="~{header}"></div>
+	<div id="contents_main">
+    
+    <div class="side-area left-recommendation">
+        <h2>★★★本日のおすすめ★★★</h2>
+        
+        <div class="recommend-item">
+            <h3>ジャーマンポテトピザ</h3>
+            <img th:src="@{/images/german_potato_pizza.jpg}" alt="German Potato Pizza">
+            <p>新じゃがが入荷しています。</p>
+        </div>
+        
+        <div class="recommend-item">
+            <h3>4種のチーズピザ</h3>
+            <img th:src="@{/images/four_cheese_pizza.jpg}" alt="4 Cheese Pizza">
+            </div>
+        
+        </div>
+    
+    <div class="main-pizza-image">
+        <img th:src="@{/images/main_pizza.jpg}" alt="Main featured pizza" id="main-feature-img">
+    </div>
+    
+    <div class="side-area right-info">
+        <h2>★★★Information★★★</h2>
+        
+        <div class="news-item">
+            <p>6/1 デリバリー始めました。</p>
+            <p>お近くの店舗よりお届けいたします。</p>
+        </div>
+
+        <div class="news-item">
+            <p>5/26 新メニュー出そろいました、新しいお味をお楽しみください。</p>
+        </div>
+        
+        <div class="news-item">
+            <p>5/20 たくさんの口コミありがとうございます。</p>
+        </div>
+        
+        <p class="to-top">>>>ピザ</p>
+    </div>
+    
+</div>
+<footer id="page-footer" th:replace="~{footer}"></footer>
+</body>
+</html>
