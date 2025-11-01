@@ -7,7 +7,7 @@
 
 ## ✨ Highlights / 特長
 
-- 🏬 **Multi-shop**: shop selection & per-shop menus / 店舗選択と店舗別メニュー  
+- 🏬 **Multi-shop**: shop selection & per-shop menus. / 店舗選択と店舗別メニュー  
 - 🧾 **Orders & cart**: add/remove items, confirm, persist / カート追加・削除、注文確定  
 - 👤 **Customer**: login, registration, password reset flow / ログイン、会員登録、パスワード再設定  
 - 🌐 **i18n-ready** UI (EN/JP) / 多言語化対応  
