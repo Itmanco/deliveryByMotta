@@ -1,6 +1,6 @@
 # 🍕 DeliveryByMotta — Pizza & Pasta Web Ordering System
 
-> **EN**: A Spring Boot. + Thymeleaf web application for a pizza & pasta restaurant chain.  
+> **EN**: A Spring Boot + Thymeleaf web application for a pizza & pasta restaurant chain.  
 > **JP**: ピザ＆パスタのレストランチェーン向けに作成した Spring Boot + Thymeleaf の Web アプリです。
 
 ---
